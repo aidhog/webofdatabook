@@ -1,0 +1,32 @@
+@prefix ex:  <http://ex.org/> .
+@prefix ex1:  <http://ex1.org/> .
+@prefix ex2:  <http://ex2.org/> .
+@prefix ex3:  <http://ex3.org/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ex2:TescoTerryland ex2:long -9.046 ;
+  ex2:lat 53.281 ;
+  ex2:city ex2:Galway ;
+  ex2:product ex2:Lemon .
+
+ex2:Tesco ex2:store ex2:TescoTerryland .
+
+ex2:Lemon ex2:pricePerUnit "0.25"^^xsd:decimal ;
+  ex2:contains ex2:Citrus .
+
+ex3:CoffeeParfait a ex3:DessertRecipe ;
+  ex3:ingred ex3:Cream , ex3:Lemon , ex3:Coffee ;
+  rdfs:label "Coffee Parfait"@en .
+
+ex1:Gaillimh ex1:long "-9.0"^^xsd:float ;
+  ex1:lat "53.3"^^xsd:float .
+
+ex1:Frank ex1:loc ex1:Gaillimh ;
+  ex1:allergy ex1:Citrus .
+
+ex2:Galway owl:sameAs ex1:Gaillimh .
+ex2:Lemon owl:sameAs ex3:Lemon .
+ex2:Citrus owl:sameAs ex1:Citrus .

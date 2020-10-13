@@ -1,0 +1,26 @@
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+PREFIX : <http://ex.org/> 
+
+SELECT ?year ?num
+WHERE {
+  ?npl :year ?year .
+  FILTER(?num = ?maximum)
+  {
+    SELECT (count(?winner) AS ?maximum)
+    WHERE {
+      ?npl a :NobelPrizeLiterature ; :winner ?winner .
+    }
+    GROUP BY ?npl
+    ORDER BY DESC(count(?winner))
+    LIMIT 1
+  } 
+  {
+    SELECT ?npl (count(?winner) AS ?num)
+    WHERE {
+      ?npl a :NobelPrizeLiterature ; :winner ?winner .
+    }
+    GROUP BY ?npl
+  }
+}

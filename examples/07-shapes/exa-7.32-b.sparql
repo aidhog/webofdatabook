@@ -1,0 +1,9 @@
+PREFIX d: <http://nobel.org/data#>
+PREFIX o: <http://nobel.org/ont#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT (o:year AS ?path) ?value {
+  d:NPP1902 o:year ?value , ?value2 .
+  FILTER(?value != ?value2 || !isLiteral(?value) 
+     || datatype(?value) != xsd:gYear)
+}

@@ -1,0 +1,69 @@
+@prefix d: <http://nobel.org/data#> .
+@prefix o: <http://nobel.org/ont#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+d:NPP1901 a o:NobelPrizePhysics ;
+  o:name "Nobelpriset i fysik 1901"@sv ;
+  o:name "Nobel Prize in Physics 1901"@en ;
+  o:year "1901"^^xsd:gYear ;
+  o:winner d:WCRöntgen ;
+  o:winners 1 ;
+  o:number 1 ;
+  o:next d:NPP1902 .          
+  
+d:NPP1902 a o:NobelPrizePhysics ;
+  o:name "Prix Nobel de physique 1902"@fr ;
+  o:name "Nobel Prize in Physics 1902"@en ;
+  o:name "Nobel Prize for Physics 1902"@en-US ; 
+  o:year "1902"^^xsd:gYear , 1902 ;          # (1) two values for year
+  o:winner d:HLorentz , d:PZeeman ;          # (2) no data for PZeeman
+  o:winners 2 ;
+  o:number 2 ;
+  o:prev d:NPP1901 ;
+  o:next d:NPP1903 , d:npp1903 .             # (3) two values for next 
+  
+d:NPP1903 a o:NobelPrizePhysics ;            # (4) no o:year
+  o:name "Nobel Prize in Physics 1903"@en ;
+  o:name "Nobel Prize for Physics 1903"@en ; # (5) two names, same lang
+  o:winner d:France , d:Poland ;             # (6) winners are countries 
+  o:number 2 , 3  ;                          # (7) two values
+  o:prev d:NPP1903 ;                         # (8) has itself as previous
+  o:winners 3 .                              # (9) number does not match
+  
+d:WCRöntgen a o:Person ;
+  o:name "Wilhelm C. Röntgen" ;
+  o:country d:Germany .
+  
+d:HLorentz a o:Person ;
+  o:name "" ;                                # (10) name is blank
+  o:country d:Netherlands .
+  
+d:France a o:Country .
+d:Poland a o:Country .
+
+o:NobelPrizePhysics rdfs:subClassOf o:NobelPrize . 
+o:NobelPrize rdfs:subClassOf o:Prize .
+
+o:year a owl:FunctionalProperty .
+o:year rdfs:range xsd:gYear .
+
+o:winner rdfs:range o:Person .
+o:Person owl:disjointWith o:Country .
+
+o:NobelPrize rdfs:subClassOf 
+  [ a owl:Restriction ;
+    owl:onProperty o:number ;
+    owl:cardinality 1 ] .
+
+o:number rdfs:range xsd:integer .
+
+o:BlankString owl:equivalentClass
+  [ owl:oneOf ( "" ) ] .
+
+o:NonBlankString rdfs:subClassOf xsd:string ;
+  owl:disjointWith o:BlankString .
+  
+o:name rdfs:range o:NonBlankString .
+o:prev a owl:IrreflexiveProperty .

@@ -1,0 +1,23 @@
+@base <http://mov.ie/db/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<Movie/id=M10001> a <Movie> ;
+  <Movie#id> "M10001" ;
+  <Movie#title> "Peterloo" ;
+  <Movie#debut> "2018-11-02"^^xsd:date ;
+  <Movie#until> "2018-11-27"^^xsd:date ;  
+  <Movie#duration> "PT2H34M" ;
+  <Movie#director> "Mike Leigh" .
+  
+<Show/M_id=M10001;time=2011-08-22T14%3A00%3A00> a <Show> ;
+  <Show#M_id> "M10001" ;
+  <Show#ref-M_id> <Movie/id=M10001> ;
+  <Show#time> "2018-11-22T14:00:00"^^xsd:dateTime ;  
+  <Show#T_id> "A" ;
+  <Show#ref-T_id> <Theatre/id=A> ;
+  <Show#priceA> 7.0 ;
+  <Show#priceB> 5.0 .
+  
+<Theatre/id=A> a <Theatre> ;
+  <Theatre#id> "A" ;
+  <Theatre#capacity> 200 .

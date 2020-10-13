@@ -1,0 +1,441 @@
+# modified slightly for OWL 2 DL compatibility
+# contains more complete definitions than the solution
+@prefix : <http://ex.org/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:PokerRound42 a :PokerRound ;
+   :hasDeal :FranksDeal42 , :JuliesDeal42 , :AnnasDeal42 .
+	
+:FranksDeal42 a :PokerDeal ; :hasPlayer :Frank ; :hasHand :2c7c8c9cAc .
+:JuliesDeal42 a :PokerDeal ; :hasPlayer :Julie ; :hasHand :3h3s6c6d6h .
+:AnnasDeal42  a :PokerDeal ; :hasPlayer :Anna  ; :hasHand :JsKcKdKhKs .
+
+:2c7c8c9cAc a :PokerHand ; :hasCard :2c , :7c , :8c , :9c , :Ac .
+:3h3s6c6d6h a :PokerHand ; :hasCard :3h , :3s , :6c , :6d , :6h .
+:JsKcKdKhKs a :PokerHand ; :hasCard :Js , :Kc , :Kd , :Kh , :Ks .
+
+:Ac a :Card .
+:Ad a :Card .
+:Ah a :Card .
+:As a :Card .
+
+:Kc a :Card .
+:Kd a :Card .
+:Kh a :Card .
+:Ks a :Card .
+
+:Qc a :Card .
+:Qd a :Card .
+:Qh a :Card .
+:Qs a :Card .
+
+:Jc a :Card .
+:Jd a :Card .
+:Jh a :Card .
+:Js a :Card .
+
+:10c a :Card .
+:10d a :Card .
+:10h a :Card .
+:10s a :Card .
+
+:9c a :Card .
+:9d a :Card .
+:9h a :Card .
+:9s a :Card .
+
+:8c a :Card .
+:8d a :Card .
+:8h a :Card .
+:8s a :Card .
+
+:7c a :Card .
+:7d a :Card .
+:7h a :Card .
+:7s a :Card .
+
+:6c a :Card .
+:6d a :Card .
+:6h a :Card .
+:6s a :Card .
+
+:5c a :Card .
+:5d a :Card .
+:5h a :Card .
+:5s a :Card .
+
+:4c a :Card .
+:4d a :Card .
+:4h a :Card .
+:4s a :Card .
+
+:3c a :Card .
+:3d a :Card .
+:3h a :Card .
+:3s a :Card .
+
+:2c a :Card .
+:2d a :Card .
+:2h a :Card .
+:2s a :Card .
+
+[] a owl:AllDifferent ; owl:members ( :Ac :Kc :Qc :Jc :10c :9c :8c :7c :6c :5c :4c :3c :2c :Ad :Kd :Qd :Jd :10d :9d :8d :7d :6d :5d :4d :3d :2d :Ah :Kh :Qh :Jh :10h :9h :8h :7h :6h :5h :4h :3h :2h :As :Ks :Qs :Js :10s :9s :8s :7s :6s :5s :4s :3s :2s ) .
+[] a owl:AllDifferent ; owl:members ( :Anna :Frank :Julie ) .
+
+:StandardCard a owl:Class ; owl:equivalentClass
+   [ owl:oneOf ( :Ac :Kc :Qc :Jc :10c :9c :8c :7c :6c :5c :4c :3c :2c :Ad :Kd :Qd :Jd :10d :9d :8d :7d :6d :5d :4d :3d :2d :Ah :Kh :Qh :Jh :10h :9h :8h :7h :6h :5h :4h :3h :2h :As :Ks :Qs :Js :10s :9s :8s :7s :6s :5s :4s :3s :2s ) ] .
+
+:Club a owl:Class ; owl:equivalentClass
+  [ owl:oneOf ( :Ac :Kc :Qc :Jc :10c :9c :8c :7c :6c :5c :4c :3c :2c ) ] .
+  
+:Diamond a owl:Class ; owl:equivalentClass
+  [ owl:oneOf ( :Ad :Kd :Qd :Jd :10d :9d :8d :7d :6d :5d :4d :3d :2d ) ] .
+
+:Heart a owl:Class ; owl:equivalentClass
+  [ owl:oneOf ( :Ah :Kh :Qh :Jh :10h :9h :8h :7h :6h :5h :4h :3h :2h ) ] .
+
+:Spade a owl:Class ; owl:equivalentClass
+  [ owl:oneOf ( :As :Ks :Qs :Js :10s :9s :8s :7s :6s :5s :4s :3s :2s ) ] .
+
+:Ace a owl:Class ; owl:equivalentClass
+  [ owl:oneOf ( :Ac :Ad :Ah :As ) ] .
+
+:King a owl:Class ; owl:equivalentClass
+  [ owl:oneOf ( :Kc :Kd :Kh :Ks ) ] .
+
+:Queen a owl:Class ; owl:equivalentClass
+  [ owl:oneOf ( :Qc :Qd :Qh :Qs ) ] .
+
+:Jack a owl:Class ; owl:equivalentClass
+  [ owl:oneOf ( :Jc :Jd :Jh :Js ) ] .
+
+:Ten a owl:Class ; owl:equivalentClass
+  [ owl:oneOf ( :10c :10d :10h :10s ) ] .
+
+:Nine a owl:Class ; owl:equivalentClass
+  [ owl:oneOf ( :9c :9d :9h :9s ) ] .
+
+:Eight a owl:Class ; owl:equivalentClass
+  [ owl:oneOf ( :8c :8d :8h :8s ) ] .
+
+:Seven a owl:Class ; owl:equivalentClass
+  [ owl:oneOf ( :7c :7d :7h :7s ) ] .
+
+:Six a owl:Class ; owl:equivalentClass
+  [ owl:oneOf ( :6c :6d :6h :6s ) ] .
+
+:Five a owl:Class ; owl:equivalentClass
+  [ owl:oneOf ( :5c :5d :5h :5s ) ] .
+  
+:Four a owl:Class ; owl:equivalentClass
+  [ owl:oneOf ( :4c :4d :4h :4s ) ] .
+
+:Three a owl:Class ; owl:equivalentClass
+  [ owl:oneOf ( :3c :3d :3h :3s ) ] .
+
+:Two a owl:Class ; owl:equivalentClass
+  [ owl:oneOf ( :2c :2d :2h :2s ) ] .
+
+
+:hasPlayer rdfs:range :PokerPlayer .
+
+:PokerHand rdfs:subClassOf
+   [ a owl:Restriction ;
+     owl:allValuesFrom :StandardCard ;
+     owl:onProperty :hasCard ] .
+
+:PokerDeal rdfs:subClassOf
+   [ a owl:Restriction ;
+     owl:cardinality 1 ;
+     owl:onProperty :hasPlayer ] .
+
+:PokerDeal rdfs:subClassOf
+   [ a owl:Restriction ;
+     owl:cardinality 1 ;
+     owl:onProperty :hasHand ] .
+
+:PokerHand rdfs:subClassOf
+   [ a owl:Restriction ;
+     owl:cardinality 5 ;
+     owl:onProperty :hasCard ] .
+
+:PokerDeal rdfs:subClassOf
+   [ a owl:Restriction ;
+     owl:cardinality 1 ;
+     owl:onProperty [ owl:inverseOf :hasDeal ] ] .
+
+:PokerRound rdfs:subClassOf
+   [ a owl:Restriction ;
+     owl:minCardinality 2 ;
+     owl:onProperty :hasDeal ] .
+     
+:PokerRound rdfs:subClassOf
+   [ a owl:Restriction ;
+     owl:maxCardinality 10 ;
+     owl:onProperty :hasDeal ] .
+
+:ClubFlush owl:equivalentClass
+   [ owl:intersectionOf ( 
+        :PokerHand 
+        [ a owl:Restriction ;
+          owl:allValuesFrom :Club ;
+          owl:onProperty :hasCard ] ) ] .
+
+:DiamondFlush owl:equivalentClass
+   [ owl:intersectionOf ( 
+        :PokerHand 
+        [ a owl:Restriction ;
+          owl:allValuesFrom :Diamond ;
+          owl:onProperty :hasCard ] ) ] .
+
+:HeartFlush owl:equivalentClass
+   [ owl:intersectionOf ( 
+        :PokerHand 
+        [ a owl:Restriction ;
+          owl:allValuesFrom :Heart ;
+          owl:onProperty :hasCard ] ) ] .
+
+:SpadeFlush owl:equivalentClass
+   [ owl:intersectionOf ( 
+        :PokerHand 
+        [ a owl:Restriction ;
+          owl:allValuesFrom :Spade ;
+          owl:onProperty :hasCard ] ) ] .
+
+:Flush owl:equivalentClass
+   [ owl:unionOf ( :ClubFlush :DiamondFlush :HeartFlush :SpadeFlush ) ] .
+
+:FourOfAKind owl:equivalentClass
+   [ owl:intersectionOf ( 
+        :PokerHand
+        [ owl:unionOf (
+             [ a owl:Restriction ;
+               owl:qualifiedCardinality 4 ;
+               owl:onProperty :hasCard ;
+               owl:onClass :Two ]
+             [ a owl:Restriction ;
+               owl:qualifiedCardinality 4 ;
+               owl:onProperty :hasCard ;
+               owl:onClass :Three ]
+             [ a owl:Restriction ;
+               owl:qualifiedCardinality 4 ;
+               owl:onProperty :hasCard ;
+               owl:onClass :Four ]
+             [ a owl:Restriction ;
+               owl:qualifiedCardinality 4 ;
+               owl:onProperty :hasCard ;
+               owl:onClass :Five ]
+             [ a owl:Restriction ;
+               owl:qualifiedCardinality 4 ;
+               owl:onProperty :hasCard ;
+               owl:onClass :Six ]
+             [ a owl:Restriction ;
+               owl:qualifiedCardinality 4 ;
+               owl:onProperty :hasCard ;
+               owl:onClass :Seven ]
+             [ a owl:Restriction ;
+               owl:qualifiedCardinality 4 ;
+               owl:onProperty :hasCard ;
+               owl:onClass :Eight ]
+             [ a owl:Restriction ;
+               owl:qualifiedCardinality 4 ;
+               owl:onProperty :hasCard ;
+               owl:onClass :Nine ]
+             [ a owl:Restriction ;
+               owl:qualifiedCardinality 4 ;
+               owl:onProperty :hasCard ;
+               owl:onClass :Ten ]
+             [ a owl:Restriction ;
+               owl:qualifiedCardinality 4 ;
+               owl:onProperty :hasCard ;
+               owl:onClass :Jack ]
+             [ a owl:Restriction ;
+               owl:qualifiedCardinality 4 ;
+               owl:onProperty :hasCard ;
+               owl:onClass :Queen ]
+             [ a owl:Restriction ;
+               owl:qualifiedCardinality 4 ;
+               owl:onProperty :hasCard ;
+               owl:onClass :King ]
+             [ a owl:Restriction ;
+               owl:qualifiedCardinality 4 ;
+               owl:onProperty :hasCard ;
+               owl:onClass :Ace ] ) ] ) ] .
+
+:FullHouse owl:equivalentClass 
+   [ owl:intersectionOf ( 
+        :PokerHand
+        [ owl:unionOf (
+             [ a owl:Restriction ;
+               owl:qualifiedCardinality 2 ;
+               owl:onProperty :hasCard ;
+               owl:onClass :Two ]
+             [ a owl:Restriction ;
+               owl:qualifiedCardinality 2 ;
+               owl:onProperty :hasCard ;
+               owl:onClass :Three ]
+             [ a owl:Restriction ;
+               owl:qualifiedCardinality 2 ;
+               owl:onProperty :hasCard ;
+               owl:onClass :Four ]
+             [ a owl:Restriction ;
+               owl:qualifiedCardinality 2 ;
+               owl:onProperty :hasCard ;
+               owl:onClass :Five ]
+             [ a owl:Restriction ;
+               owl:qualifiedCardinality 2 ;
+               owl:onProperty :hasCard ;
+               owl:onClass :Six ]
+             [ a owl:Restriction ;
+               owl:qualifiedCardinality 2 ;
+               owl:onProperty :hasCard ;
+               owl:onClass :Seven ]
+             [ a owl:Restriction ;
+               owl:qualifiedCardinality 2 ;
+               owl:onProperty :hasCard ;
+               owl:onClass :Eight ]
+             [ a owl:Restriction ;
+               owl:qualifiedCardinality 2 ;
+               owl:onProperty :hasCard ;
+               owl:onClass :Nine ]
+             [ a owl:Restriction ;
+               owl:qualifiedCardinality 2 ;
+               owl:onProperty :hasCard ;
+               owl:onClass :Ten ]
+             [ a owl:Restriction ;
+               owl:qualifiedCardinality 2 ;
+               owl:onProperty :hasCard ;
+               owl:onClass :Jack ]
+             [ a owl:Restriction ;
+               owl:qualifiedCardinality 2 ;
+               owl:onProperty :hasCard ;
+               owl:onClass :Queen ]
+             [ a owl:Restriction ;
+               owl:qualifiedCardinality 2 ;
+               owl:onProperty :hasCard ;
+               owl:onClass :King ]
+             [ a owl:Restriction ;
+               owl:qualifiedCardinality 2 ;
+               owl:onProperty :hasCard ;
+               owl:onClass :Ace ] ) ]
+        [ owl:unionOf (
+             [ a owl:Restriction ;
+               owl:qualifiedCardinality 3 ;
+               owl:onProperty :hasCard ;
+               owl:onClass :Two ]
+              [ a owl:Restriction ;
+               owl:qualifiedCardinality 3 ;
+               owl:onProperty :hasCard ;
+               owl:onClass :Three ]
+             [ a owl:Restriction ;
+               owl:qualifiedCardinality 3 ;
+               owl:onProperty :hasCard ;
+               owl:onClass :Four ]
+             [ a owl:Restriction ;
+               owl:qualifiedCardinality 3 ;
+               owl:onProperty :hasCard ;
+               owl:onClass :Five ]
+             [ a owl:Restriction ;
+               owl:qualifiedCardinality 3 ;
+               owl:onProperty :hasCard ;
+               owl:onClass :Six ]
+             [ a owl:Restriction ;
+               owl:qualifiedCardinality 3 ;
+               owl:onProperty :hasCard ;
+               owl:onClass :Seven ]
+             [ a owl:Restriction ;
+               owl:qualifiedCardinality 3 ;
+               owl:onProperty :hasCard ;
+               owl:onClass :Eight ]
+             [ a owl:Restriction ;
+               owl:qualifiedCardinality 3 ;
+               owl:onProperty :hasCard ;
+               owl:onClass :Nine ]
+             [ a owl:Restriction ;
+               owl:qualifiedCardinality 3 ;
+               owl:onProperty :hasCard ;
+               owl:onClass :Ten ]
+             [ a owl:Restriction ;
+               owl:qualifiedCardinality 3 ;
+               owl:onProperty :hasCard ;
+               owl:onClass :Jack ]
+             [ a owl:Restriction ;
+               owl:qualifiedCardinality 3 ;
+               owl:onProperty :hasCard ;
+               owl:onClass :Queen ]
+             [ a owl:Restriction ;
+               owl:qualifiedCardinality 3 ;
+               owl:onProperty :hasCard ;
+               owl:onClass :King ]
+             [ a owl:Restriction ;
+               owl:qualifiedCardinality 3 ;
+               owl:onProperty :hasCard ;
+               owl:onClass :Ace ] ) ] ) ] . 
+
+:cardDealt owl:propertyChainAxion ( :hasHand :hasCard ) .
+:PokerDeal owl:hasKey ( [ owl:inverseOf :hasDeal ] :cardDealt ) .
+
+:PokerDeal owl:hasKey ( [ owl:inverseOf :hasDeal ] :hasPlayer ) .
+
+:beatenBy a owl:TransitiveProperty , owl:IrreflexiveProperty ; 
+  rdfs:domain :PokerHand ; rdfs:range :PokerHand .
+
+# OWL 2 Full variant
+:Flush :classBeatenBy :FullHouse .
+:FullHouse :classBeatenBy :FourOfAKind .
+:beatenBy owl:propertyChainAxiom 
+   ( rdf:type :classBeatenBy [ owl:inverseOf rdf:type ] ) .
+
+# OWL 2 DL variant
+#:Flush owl:equivalentClass
+#   [ a owl:Restriction ; 
+#     owl:hasSelf true ; 
+#     owl:onProperty :fl ] .
+#
+#:FullHouse owl:equivalentClass
+#   [ a owl:Restriction ;
+#     owl:hasSelf true ;
+#     owl:onProperty :fh ] .
+#
+#:FourOfAKind owl:equivalentClass
+#   [ a owl:Restriction ;
+#     owl:hasSelf true ;
+#     owl:onProperty :fk ] .
+#
+#:beatenBy owl:propertyChainAxiom ( :fl owl:topObjectProperty :fh ) .
+#:beatenBy owl:propertyChainAxiom ( :fh owl:topObjectProperty :fk ) .
+
+:beatenByLoop owl:propertyChainAxiom
+  ( [ owl:inverseOf :hasDeal ] :hasDeal :hasHand 
+       [ owl:inverseOf :beatenBy ] [ owl:inverseOf :hasHand ] ) .
+
+:LosingPokerDeal owl:equivalentClass
+  [ a owl:Restriction ;
+    owl:hasSelf true ;
+    owl:onProperty :beatenByLoop ] .
+
+:LosingPokerDeal owl:equivalentClass
+   [ a owl:Restriction ; 
+     owl:hasSelf true ; 
+     owl:onProperty :lpd ] . 
+
+:loses owl:propertyChainAxiom 
+   ( [ owl:inverseOf :hasPlayer ] :lpd [ owl:inverseOf :hasHand ] ) .
+
+:PokerHandPair owl:equivalentClass
+  [ a owl:Restriction ;
+    owl:cardinality 2 ;
+    owl:onProperty :hasMember ] .
+
+:hasMember rdfs:range :PokerHand .
+
+:hasMemberWithCard owl:propertyChainAxiom ( :hasMember :hasCard ) .
+
+:PokerHandPair rdfs:subClassOf
+  [ a owl:Restriction ;
+    owl:minCardinality 6 ;
+    owl:onProperty :hasMemberWithCard ] .
+

@@ -1,0 +1,56 @@
+@prefix : <http://ex.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+[] a :ApartmentBlock ;
+  :address "146, 5th Avenue, New York, US"@en ;
+  :floors 24 ;
+  :apartments 120 ;
+  :constructed "1976"^^xsd:gYear ;
+  :hasFloor [
+     a :Floor ;
+     :number "2" ;
+     :apartments 5 ;
+     :hasApartment _:a201 , _:a202 , _:a203 , _:a204 , _:a205
+  ] .
+
+_:a201 a :Apartment ;
+  :number "201" ;
+  :bedrooms 1 ;
+  :nextDoor _:a202 .
+
+_:jsa201 :occupant :JohnSmith ;
+  :startDate "2013-10-12"^^xsd:date ;
+  :apartment _:a201 .
+
+_:msa201 :occupant :MarySmith ;
+  :startDate "2013-10-12"^^xsd:date ;
+  :apartment _:a201 .
+
+:JohnSmith :name "John Smith"@en ; 
+  :wife :MarySmith .   
+
+:MarySmith :name "Mary Smith"@en .
+
+_:sma201 :occupant :SimonMurphy ;
+  :startDate "2011-12-01"^^xsd:date ;
+  :endDate "2013-10-12"^^xsd:date ;
+  :apartment _:a201 .
+
+:SimonMurphy :name "Simon Murphy"@en .  
+
+_:a202 a :Apartment ;
+  :number "202" ;
+  :bedrooms 2 .  
+
+_:joba202 :occupant :JimOBrien ;
+  :startDate "2001-05-12"^^xsd:date ;
+  :apartment _:a202 . 
+
+_:hoba202 :occupant :HarryOBrien ;
+  :startDate "2009-06-05"^^xsd:date ;
+  :apartment _:a202 .
+
+:JimOBrien :name "Jim O'Brien"@en ;
+  :son :HarryOBrien . 
+
+:HarryOBrien :name "Harry O'Brien"@en .

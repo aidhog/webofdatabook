@@ -1,0 +1,9 @@
+PREFIX : <http://ex.org/>
+SELECT DISTINCT ?w 
+WHERE {
+  {  ?nplBB a :NobelPrizeLiterature ; :winner :BBjørnson .
+     ?nplBB :prev ?nplPrev . ?nplPrev :winner ?w . }
+  UNION
+  {  ?nplBB a :NobelPrizeLiterature ; :winner :BBjørnson .
+     ?nplBB :next ?nplNext . ?nplNext :winner ?w . }  
+}

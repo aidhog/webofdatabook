@@ -1,0 +1,49 @@
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix :  <http://ex.org/> .
+
+:NobelPrize rdfs:label "Nobel"@en .
+
+:NobelPrizeLiterature rdfs:subClassOf :NobelPrize ;
+  rdfs:label "Nobel in Literature"@en , "Nobel de Literatura"@es ;
+  :maxWinners 2 .
+
+:NPL1901 a :NobelPrizeLiterature ;
+  :next :NPL1902 ;
+  :year "1901"^^xsd:gYear ;
+  :winner :SPrudhomme .
+
+:NPL1902 a :NobelPrizeLiterature ;
+  :next :NPL1903 ;
+  :prev :NPL1901 ;
+  :year "1902"^^xsd:gYear ;
+  :winner :TMommsen .
+
+:NPL1903 a :NobelPrizeLiterature ;
+  :next :NPL1904 ;
+  :prev :NPL1902 ;
+  :year "1903"^^xsd:gYear ;
+  :winner :BBjørnson .
+  
+:NPL1904 a :NobelPrizeLiterature ;
+  :prev :NPL1903 ;
+  :year "1904"^^xsd:gYear ;
+  :winner :FMistral , :JEchegaray .
+
+:SPrudhomme :country :France .
+
+:TMommsen :country :Germany .
+
+:BBjørnson :country :Norway .
+
+:FMistral :country :France .
+
+:JEchegaray :country :Spain .
+
+:Germany :war :FrancoPrussianWar .
+
+:France :war :FrancoPrussianWar .
+
+:FrancoPrussianWar :combatant :SPrudhomme ;
+  :end "1871"^^xsd:gYear .

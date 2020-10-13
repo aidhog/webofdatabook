@@ -1,0 +1,49 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix d: <http://nobel.org/data#> . 
+@prefix o: <http://nobel.org/ont#> .
+@prefix v: <http://nobel.org/val#> .
+
+v:HasMaxMinDatatypeValueComponent a sh:ConstraintComponent ;
+  sh:parameter [
+    sh:path v:dt ;
+    sh:nodeKind sh:IRI         # new constraint
+  ] ;
+  sh:parameter [
+    sh:path v:min ;
+    sh:optional true ;
+    sh:datatype xsd:integer    # new constraint
+  ] ;
+  sh:parameter [
+    sh:path v:max ;
+    sh:optional true ;
+    sh:datatype xsd:integer
+  ] ; 
+  sh:propertyValidator v:HasMaxMinDatatypeSelectValidator ;
+  sh:validator v:HasMaxMinDatatypeAskValidator .
+
+v:HasMaxMinDatatypeSelectValidator a sh:SPARQLSelectValidator ;
+  sh:select """
+    SELECT DISTINCT $this ?value
+    WHERE {
+      $this $PATH ?value
+      FILTER (!isLiteral(?value) || datatype(?value) != $dt
+        || coalesce(?value < $min,false) 
+        || coalesce(?value > $max,false) )
+    }
+  """ .  
+
+v:HasMaxMinDatatypeAskValidator a sh:SPARQLAskValidator ;
+  sh:ask """
+    ASK WHERE {
+      FILTER (isLiteral($value) && datatype($value) = $dt
+        && (coalesce(?value >= $min,true)) 
+        && (coalesce(?value <= $max,true))  )
+    }
+  """ . 
+
+v:IsPositiveInteger a sh:NodeShape ;
+  sh:targetObjectsOf o:number ;
+  v:dt "integer" ;
+  v:min 1 .

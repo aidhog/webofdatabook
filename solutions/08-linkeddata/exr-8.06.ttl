@@ -1,0 +1,33 @@
+@base <http://nobel.org/db/> .
+@prefix nv: <http://nobel.org/voc#> .
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<LaureateMap> a rr:TriplesMap ;
+  rr:logicalTable [ rr:tableName "Laureate" ] ;
+  
+  rr:subjectMap [
+    rr:template "http://nobel.org/db/l/{winner}" ;
+    rr:class nv:Laureate
+  ] .
+
+<AwardMap> a rr:TriplesMap ;
+  rr:logicalTable [ rr:tableName "Award" ] ;
+  
+  rr:subjectMap [
+    rr:template "http://nobel.org/db/p/{name}" ;
+    rr:class nv:NobelPrize
+  ] ;  
+  
+  rr:predicateObjectMap [
+    rr:predicate nv:inaugural ;
+    rr:objectMap [ 
+      rr:parentTriplesMap <LaureateMap> ;
+      rr:joinCondition [
+        rr:child "name" ; rr:parent "A_name"
+      ] ;
+      rr:joinCondition [
+        rr:child "since" ; rr:parent "year"
+      ]
+    ]
+  ] . 

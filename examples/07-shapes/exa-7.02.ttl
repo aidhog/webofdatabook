@@ -1,0 +1,41 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix d: <http://nobel.org/data#> . 
+@prefix o: <http://nobel.org/ont#> .
+@prefix v: <http://nobel.org/val#> .
+
+v:NobelPrizePhysicsShape a sh:NodeShape ; 
+  sh:targetClass o:NobelPrizePhysics ;
+  sh:property [ 
+    sh:path o:year ;
+    sh:maxCount 1 ;
+    sh:minCount 1 ;
+    sh:datatype xsd:gYear
+  ] ;
+  sh:property [ 
+    sh:path o:winner ;
+    sh:maxCount 3 ;
+    sh:minCount 1 ;    
+    sh:class o:Person ;
+    sh:nodeKind sh:IRI ;
+  ] ;
+  sh:property [ 
+    sh:path o:next ;
+    sh:maxCount 1 ;   
+    sh:class o:NobelPrizePhysics ;
+    sh:nodeKind sh:IRI ;
+  ] ;
+  sh:closed true ;
+  sh:ignoredProperties 
+    ( o:name o:next o:number o:prev o:winners rdf:type ) .
+
+v:PersonShape a sh:NodeShape ; 
+  sh:targetClass o:Person ; 
+  sh:property [ 
+    sh:path o:name ;
+    sh:maxCount 1 ;   
+    sh:minCount 1 ;
+    sh:datatype xsd:string ;
+    sh:minLength 1
+  ] .

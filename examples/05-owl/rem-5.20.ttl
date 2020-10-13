@@ -1,0 +1,19 @@
+@prefix : <http://ex.org/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:TernaryStar owl:equivalentClass 
+  [ a owl:Restriction ;
+    owl:onProperty :orbitsStar ;
+    owl:cardinality 2 ] .
+
+#:TernaryStar owl:equivalentClass 
+#  [ owl:intersectionOf (
+#      [ a owl:Restriction ;
+#        owl:onProperty :orbitsStar ;
+#        owl:maxCardinality 2 ]
+#      [ a owl:Restriction ;
+#        owl:onProperty :orbitsStar ;
+#        owl:minCardinality 2 ] ) ] .

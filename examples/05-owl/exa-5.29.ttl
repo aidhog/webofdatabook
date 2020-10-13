@@ -1,0 +1,40 @@
+# slightly modified to work with OWL 2 DL reasoners
+@prefix :  <http://ex.org/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:Zia :sire :Marty ; :dam :Lea .
+:Zach :sire :Marty ; :dam :Lea ; a :Zebroid .
+
+:Stallion a owl:Class ; rdfs:subClassOf :MaleEquus .  
+:Mare a owl:Class ; rdfs:subClassOf :FemaleEquus .  
+
+:Equus a owl:Class ; owl:equivalentClass
+  [ owl:unionOf ( :FemaleEquus :MaleEquus ) ] .
+
+:FemaleEquus a owl:Class ; owl:disjointWith :MaleEquus .
+:MaleEquus a owl:Class .
+ 
+:sire a owl:ObjectProperty ; rdfs:domain :Equus ; rdfs:range :Stallion ; 
+   rdfs:subPropertyOf :parent .
+:dam a owl:ObjectProperty ; rdfs:domain :Equus ; rdfs:range :Mare ; 
+   rdfs:subPropertyOf :parent .
+ 
+:Equus rdfs:subClassOf
+  [ a owl:Restriction ;
+    owl:cardinality 2 ;
+    owl:onProperty :parent ] .
+    
+:NonZebraEquus a owl:Class ; owl:equivalentClass
+  [ owl:intersectionOf ( :Equus [ owl:complementOf :Zebra ] ) ] .
+    
+:Zebroid a owl:Class ; owl:equivalentClass
+  [ owl:intersectionOf (
+     [ a owl:Restriction ;
+       owl:someValuesFrom :Zebra ;
+       owl:onProperty :parent ]
+     [ a owl:Restriction ;
+       owl:someValuesFrom :NonZebraEquus ;
+       owl:onProperty :parent ] ) ] .

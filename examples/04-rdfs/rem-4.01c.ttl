@@ -1,0 +1,10 @@
+@prefix ex: <http://example.org/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ex:hasBakingTime rdfs:domain ex:OvenRecipe .
+ex:CakeRecipe rdfs:subClassOf ex:OvenRecipe .
+ex:CasseroleRecipe rdfs:subClassOf ex:OvenRecipe .
+ex:PieRecipe rdfs:subClassOf ex:OvenRecipe .
+ex:LemonPie ex:hasBakingTime "PT1H"^^xsd:duration .

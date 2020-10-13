@@ -1,0 +1,44 @@
+@base <http://mov.ie/db/> .
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix schema: <http://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<MovieMap> a rr:TriplesMap ;
+
+  rr:logicalTable [ rr:tableName "Movie" ] ;
+
+  rr:subjectMap [
+    rr:template "http://mov.ie/db/m/{id}" ;
+    rr:class schema:Movie
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate schema:name ;
+    rr:objectMap [ 
+      rr:column "title" ;
+      rr:language "en"
+    ]
+  ] ;
+  
+  rr:predicateObjectMap [
+    rr:predicate schema:contentRating ;
+    rr:objectMap [ 
+       rr:template "MPAA {mpaa}" ;
+       rr:termType rr:Literal
+    ]
+  ] ;
+  
+  rr:predicateObjectMap [
+    rr:predicate schema:director , schema:creator ;
+    rr:objectMap [ 
+       rr:template "http://mov.ie/db/p/{director}"
+    ]
+  ] ;  
+  
+  rr:predicateObjectMap [
+    rr:predicate schema:duration ;
+    rr:objectMap [
+      rr:column "duration" ;
+      rr:datatype xsd:duration
+    ]
+  ] .

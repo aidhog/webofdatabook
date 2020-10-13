@@ -1,0 +1,11 @@
+@prefix ex: <http://example.org/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ex:LemonPie rdf:type ex:Recipe .
+ex:LemonPie rdfs:label "Lemon Pie"@en .
+ex:LemonPie ex:rating "5.0"^^xsd:float .
+ex:LemonPie ex:hasIngredient _:i1 .
+_:i1 rdf:value ex:Lemon .
+_:i1 ex:quantity "3"^^xsd:int .

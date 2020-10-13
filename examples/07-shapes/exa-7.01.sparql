@@ -1,0 +1,11 @@
+PREFIX d: <http://nobel.org/data#>
+PREFIX o: <http://nobel.org/ont#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+
+ASK {
+  ?npp a o:NobelPrizePhysics .
+  OPTIONAL { ?npp o:year ?year1 , ?year2 . }
+  FILTER(!bound(?year1) || ?year1 != ?year2 || !isLiteral(?year1) 
+     || datatype(?year1) != xsd:gYear)
+}

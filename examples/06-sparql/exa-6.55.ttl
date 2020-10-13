@@ -1,0 +1,5 @@
+@prefix :  <http://ex.org/> .
+
+[] a :NobelPrizeLiterature ;
+  :winner [ :country :France ] ;
+  :winner [ :country :Spain ] .

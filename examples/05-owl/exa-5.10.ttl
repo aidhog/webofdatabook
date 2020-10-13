@@ -1,0 +1,13 @@
+@prefix ex1: <http://ex1.org/> .
+@prefix ex2: <http://ex2.org/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# different-from entailments may not be
+# materialised for space reasons
+ex2:TescoTerryland rdf:type ex2:Store .
+ex1:Tesco rdf:type ex1:Franchise .
+ex1:Outlet owl:equivalentClass ex2:Store .
+ex1:Outlet owl:disjointWith ex1:Franchise .

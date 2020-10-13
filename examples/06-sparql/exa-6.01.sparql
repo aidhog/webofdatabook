@@ -1,0 +1,6 @@
+PREFIX : <http://ex.org/>
+SELECT ?nplWinner ?nplYear ?warEndYear
+WHERE {
+  ?npl a :NobelPrizeLiterature ; :year ?nplYear ; :winner ?nplWinner .
+  ?war :combatant ?nplWinner ; :end ?warEndYear .
+}

@@ -1,0 +1,14 @@
+@base <http://nobel.org/db/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<Laureate/winner=Sully%20Prudhomme;year=1901;A_name=Literature> 
+  a <Laureate> ;
+  <Laureate#winner> "Sully Prudhomme" ;
+  <Laureate#year> "1901"^^xsd:integer ;
+  <Laureate#A_name> "Literature" ;
+  <Laureate#ref-A_name> <Award/name=Literature> .
+  
+<Award/name=Literature> 
+  a <Award> ;
+  <Award#name> "Literature" ;
+  <Award#since> "1901"^^xsd:integer .

@@ -1,0 +1,64 @@
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+PREFIX : <http://ex.org/> 
+
+INSERT DATA {
+  :NobelPrize rdfs:label "Nobel"@en .
+
+  :NobelPrizeLiterature rdfs:subClassOf :NobelPrize ;
+    rdfs:label "Nobel in Literature"@en , "Nobel de Literatura"@es ;
+    :maxWinners 2 .
+
+  :NPL1901 a :NobelPrizeLiterature ;
+    :next :NPL1902 ;
+    :year "1901"^^xsd:gYear .
+
+  :NPL1902 a :NobelPrizeLiterature ;
+    :next :NPL1903 ;
+    :prev :NPL1901 ;
+    :year "1902"^^xsd:gYear .
+
+  :NPL1903 a :NobelPrizeLiterature ;
+    :next :NPL1904 ;
+    :prev :NPL1902 ;
+    :year "1903"^^xsd:gYear .
+  
+  :NPL1904 a :NobelPrizeLiterature ;
+    :prev :NPL1903 ;
+    :year "1904"^^xsd:gYear .
+
+  GRAPH :G-SP {
+    :NPL1901 :winner :SPrudhomme .
+    :SPrudhomme :country :France .
+  }
+
+  GRAPH :G-TM {
+    :NPL1902 :winner :TMommsen .
+    :TMommsen :country :Germany .
+  }
+
+  GRAPH :G-BB {
+    :NPL1903 :winner :BBjørnson .
+    :BBjørnson :country :Norway .
+  }
+
+  GRAPH :G-FM {
+    :NPL1904 :winner :FMistral .
+    :FMistral :country :France .
+  }
+
+  GRAPH :G-JE {
+    :NPL1904 :winner :JEchegaray .
+    :JEchegaray :country :Spain .
+  }
+  
+  GRAPH :G-FPW {
+    :Germany :war :FrancoPrussianWar .
+
+    :France :war :FrancoPrussianWar .
+
+    :FrancoPrussianWar :combatant :SPrudhomme ;
+      :end "1871"^^xsd:gYear .
+  }
+}

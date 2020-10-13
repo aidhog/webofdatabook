@@ -1,0 +1,14 @@
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+PREFIX : <http://ex.org/> 
+
+CONSTRUCT {
+  ?w1 :succ ?w2 .
+  ?w2 :pred ?w1 .
+}
+WHERE {
+  ?npl1 a :NobelPrizeLiterature ; :winner ?w1 .
+  ?npl2 a :NobelPrizeLiterature ; :winner ?w2 .
+  ?npl1 :next ?npl2 .
+}

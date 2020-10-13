@@ -1,0 +1,12 @@
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+PREFIX : <http://ex.org/> 
+
+SELECT ?prize
+FROM :G-JE
+FROM :G-FM
+WHERE { 
+  ?prize :winner ?winner1 . ?winner1 :country :France .
+  ?prize :winner ?winner2 . ?winner2 :country :Spain .
+}

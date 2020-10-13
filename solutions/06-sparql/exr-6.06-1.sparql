@@ -1,0 +1,7 @@
+PREFIX : <http://ex.org/>
+SELECT DISTINCT ?npl
+WHERE {
+  ?npl a :NobelPrizeLiterature ; :winner ?w .
+  ?w :country ?c .
+  MINUS { ?c :war ?war . }
+}

@@ -1,0 +1,42 @@
+# not valid OWL 2 DL as we use a
+# datatype inverse-functional property
+# but a similar example can be achieved
+# using owl:oneOf as commented out below
+@prefix :  <http://ex.org/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:WeekDayOrdinal a rdfs:Datatype; owl:equivalentClass
+  [ a rdfs:Datatype ;
+    owl:onDatatype xsd:integer ;
+    owl:withRestrictions (
+      [ xsd:minInclusive 1 ]
+      [ xsd:minInclusive 5 ] ) ] .
+
+:hasOrdinal a owl:DatatypeProperty , owl:InverseFunctionalProperty .
+
+:WeekDay rdfs:subClassOf
+  [ a owl:Restriction ;
+    owl:someValuesFrom :WeekDayOrdinal ;
+    owl:onProperty :hasOrdinal ] .
+
+:HardWorkingEmployee a owl:Class ; owl:equivalentClass
+  [ a owl:Restriction ; 
+    owl:minCardinality 6 ;
+    owl:onProperty :worksOnWeekday ] .
+
+:worksOnWeekday a owl:ObjectProperty ; 
+  rdfs:domain :Employee ; rdfs:range :WeekDay .
+
+:Jane a :HardWorkingEmployee .
+
+# :WeekDay owl:equivalentClass
+#  [ owl:oneOf ( :Monday :Tuesday :Wednesdsay :Thursday :Friday ) ] .
+
+# :WeekendEN a rdfs:Datatype ; owl:equivalentClass 
+#  [ a rdfs:Datatype ;
+#    owl:onDatatype xsd:string ;
+#    owl:withRestrictions (
+#      [ xsd:pattern "^[Ss](atur|un)day$" ] ) ] .

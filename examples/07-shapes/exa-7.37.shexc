@@ -1,0 +1,36 @@
+PREFIX d: <http://nobel.org/data#>
+PREFIX o: <http://nobel.org/ont#>
+PREFIX v: <http://nobel.org/val#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+v:NobelPrizeShape IRI
+  /^http:\/\/nobel\.org\/data#NPP(19|20)[0-9][0-9]/ {
+  $v:NobelPrizeConstraints (
+    o:name MINLENGTH 1 + ;
+    o:year xsd:gYear AND /(19|20)[0-9][0-9]/ ;
+    o:winner . * ; 
+    o:winners MININCLUSIVE 1 MAXINCLUSIVE 4 ; 
+    o:number MININCLUSIVE 1 ;
+    ( o:next @v:NobelPrizeShape | o:prev @v:NobelPrizeShape );
+    ( ^o:next @v:NobelPrizeShape | ^o:prev @v:NobelPrizeShape )
+  );
+  a [ o:NobelPrize~ - o:NobelPrize ] 
+    AND { rdfs:subClassOf [ o:NobelPrize ] }
+}
+
+v:NobelPrizePhysicsShape CLOSED { 
+  &v:NobelPrizeConstraints ;
+  a [ o:NobelPrizePhysics ] ;
+  o:winner @v:PersonShape {1,4}
+}
+
+v:NobelPrizePeaceShape CLOSED { 
+  &v:NobelPrizeConstraints ;
+  a [ o:NobelPrizePeace ] ;
+  o:winner @v:PersonShape OR @v:OrganisationShape {1,4}
+}
+
+v:OrganisationShape EXTRA a { a [ o:Organisation ] }
+
+v:PersonShape EXTRA a { a [ o:Person ] }

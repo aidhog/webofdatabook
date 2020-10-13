@@ -1,0 +1,23 @@
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX p: <http://www.wikidata.org/prop/>
+PREFIX ps: <http://www.wikidata.org/prop/statement/>
+PREFIX pq: <http://www.wikidata.org/prop/qualifier/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT DISTINCT ?laureateName ?awardYear ?warName ?warStart ?warEnd
+WHERE {
+  ?laureate p:P166 ?award .            # Winner of some prize
+  ?award ps:P166 wd:Q37922 .           # Prize is Nobel Pr. in Lit.
+  ?award pq:P585 ?awardDate .          # Get the date of the award
+  BIND(YEAR(?awardDate) AS ?awardYear) # Get the year of the award
+  ?laureate wdt:P607 ?war .            # Find war(s) laureate was in
+  ?war rdfs:label ?warName .           # Get name(s) of war(s)
+  ?war wdt:P580 ?warStDate  .          # Get date the war started
+  BIND(YEAR(?warStDate) AS ?warStart)  # Get year the war started
+  ?war wdt:P582 ?warEndDate  .         # Get date the war ended
+  BIND(YEAR(?warEndDate) AS ?warEnd)   # Get year the war ended
+  ?laureate rdfs:label ?laureateName . # Get name of laureate
+  FILTER(LANG(?warName)="en"           # Only English labels
+  && LANG(?laureateName)="en")         #  ...  names only
+} ORDER BY ?awardYear ?warStart        # Oldest award (then war) first

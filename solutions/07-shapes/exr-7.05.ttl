@@ -1,0 +1,18 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix d: <http://nobel.org/data#> . 
+@prefix o: <http://nobel.org/ont#> .
+@prefix v: <http://nobel.org/val#> .
+
+v:CountryOfPersonShape a sh:PropertyShape ; 
+  sh:targetClass o:Country ;
+  sh:targetObjectsOf o:country ;
+  sh:path [ sh:inversePath o:country ] ;
+  sh:class o:Person ;
+  sh:minCount 1 ;
+  sh:property v:PersonOfCountryShape .
+  
+v:PersonOfCountryShape a sh:PropertyShape ; 
+  sh:path [ sh:inversePath o:winner ] ;
+  sh:minCount 1 .

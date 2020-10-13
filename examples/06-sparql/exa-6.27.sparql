@@ -1,0 +1,25 @@
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+PREFIX : <http://ex.org/> 
+
+SELECT ?language (count(distinct ?winner) AS ?num)
+WHERE {
+  ?npl a :NobelPrizeLiterature ; :winner ?winner .
+  ?winner :country ?country .
+  VALUES (?country ?cLang) {
+    (:France :French)    
+    (:Spain :Spanish)
+    (:Norway :Norwegian)
+    (:Germany :German)    
+  }
+  VALUES (?winner ?wLang) {
+    (:SPrudhomme UNDEF)
+    (:TMommsen UNDEF)
+    (:BBjørnson UNDEF)
+    (:FMistral :Provençal)
+    (:JEchegaray :Spanish)
+  }
+  BIND (coalesce(?wLang,?cLang) AS ?language)
+}
+GROUP BY ?language

@@ -1,0 +1,37 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix d: <http://nobel.org/data#> . 
+@prefix o: <http://nobel.org/ont#> .
+@prefix v: <http://nobel.org/val#> .
+
+v:HasMaxMinDatatypeValueComponent a sh:ConstraintComponent ;
+  sh:parameter [
+    sh:path v:dt
+  ] ;
+  sh:parameter [
+    sh:path v:min ;
+    sh:optional true
+  ] ;
+  sh:parameter [
+    sh:path v:max ;
+    sh:optional true
+  ] ; 
+  sh:propertyValidator v:HasMaxMinDatatypeSelectValidator .
+
+v:HasMaxMinDatatypeSelectValidator a sh:SPARQLSelectValidator ;
+  sh:select """
+    SELECT DISTINCT $this ?value
+    WHERE {
+      $this $PATH ?value
+      FILTER (!isLiteral(?value) || datatype(?value) != $dt
+        || coalesce(?value < $min,false) 
+        || coalesce(?value > $max,false) )
+    }
+  """ .  
+
+v:HasPositiveNumber a sh:PropertyShape ;
+  sh:targetClass o:NobelPrize ;
+  sh:path o:number ;
+  v:dt xsd:integer ;
+  v:min 1 .

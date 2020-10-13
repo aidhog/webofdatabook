@@ -1,0 +1,25 @@
+PREFIX d: <http://nobel.org/data#>
+PREFIX o: <http://nobel.org/ont#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+ASK {
+  {
+    ?npp a o:NobelPrizePhysics ; 
+      o:winner ?w .
+    ?w a ?wt .
+    FILTER(?wt != o:Person)
+  }
+  UNION
+  {
+    {
+      SELECT ?npp {
+        ?npp a o:NobelPrizePhysics .
+        OPTIONAL { ?npp o:winner ?w }
+      }
+      GROUP BY ?npp
+      HAVING (count(?w)=0 || count(?w)>3)
+    }
+  }
+}

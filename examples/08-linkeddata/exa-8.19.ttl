@@ -1,0 +1,23 @@
+@base <http://mov.ie/db/> .
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix schema: <http://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<AdultMap> a rr:TriplesMap ;
+
+  rr:logicalTable [ 
+    rr:sqlQuery 
+      "SELECT * FROM Movie WHERE mpaa IN ('R','NC-17')" ;
+    rr:sqlVersion rr:SQL2008
+  ] ;
+
+  rr:subjectMap [
+    rr:template "http://mov.ie/db/m/{id}"
+  ] ;
+
+  rr:predicateObjectMap [
+    rr:predicate schema:typicalAgeRange ;
+    rr:objectMap [ 
+      rr:constant "18+"
+    ]
+  ] .

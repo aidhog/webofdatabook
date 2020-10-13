@@ -1,0 +1,17 @@
+@prefix : <http://ex.org/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:RelationshipV21.4 rdf:type owl:Ontology ;
+  rdfs:label "Relationship ontology"@en ;
+  rdfs:comment "V-21.4 of the Relationship ontology now ..."@en ;
+  owl:imports :PeopleV7.6 ;
+  owl:priorVersion :RelationshipV21.3 ;
+  owl:backwardCompatibleWith :RelationshipV21.3 ;
+  owl:incompatibleWith :RelationshipV21.1 .
+
+:loves rdf:type owl:ObjectProperty ;
+  rdfs:label "loves"@en , "ama"@es ;
+  rdfs:comment "directed form of hysteria caused by hormones"@en .

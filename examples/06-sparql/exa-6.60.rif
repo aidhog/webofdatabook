@@ -1,0 +1,10 @@
+Document(
+  Prefix( ex <http://ex.org/>)
+  Group
+  (
+    Forall ?X ?Y ( 
+       ?X [ ex:youngerSiblingOf -> ?Y ] :- And( ?X [ ex:siblingOf -> ?Y  ] 
+                                              ?X [ ex:youngerThan -> ?Y ] )
+    )
+  )
+)  

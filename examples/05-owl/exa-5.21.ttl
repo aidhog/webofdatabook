@@ -1,0 +1,36 @@
+@prefix : <http://ex.org/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# minor changes to run with OWL 2 DL tools
+:MinorAge a rdfs:Datatype ; owl:equivalentClass 
+  [ a rdfs:Datatype ;
+    owl:onDatatype xsd:integer ;
+    owl:withRestrictions (
+      [ xsd:minInclusive 0 ]
+      [ xsd:maxExclusive 18 ] ) ] .
+
+:TeenAge a rdfs:Datatype ; owl:equivalentClass 
+  [ a rdfs:Datatype ;
+    owl:onDatatype xsd:integer ;
+    owl:withRestrictions (
+      [ xsd:minInclusive 13 ]
+      [ xsd:maxExclusive 19 ] ) ] .
+
+:ChildAge a rdfs:Datatype ; owl:equivalentClass 
+  [ owl:intersectionOf ( :MinorAge [ owl:complementOf :TeenAge ] ) ] .
+  
+# :age a owl:FunctionalProperty , owl:DatatypeProperty .
+#
+# :Child a owl:Class ; owl:equivalentClass 
+#  [ owl:intersectionOf (
+#      :Person
+#      [ a owl:Restriction ; 
+#        owl:someValuesFrom :ChildAge ;
+#        owl:onProperty :age ] ) ] .
+#
+# :Person a owl:Class .
+#
+# :Fred a :Person ; :age 9 .

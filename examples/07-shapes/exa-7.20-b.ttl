@@ -1,0 +1,29 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix d: <http://nobel.org/data#> . 
+@prefix o: <http://nobel.org/ont#> .
+@prefix v: <http://nobel.org/val#> .
+
+v:CourseShape a sh:NodeShape ;
+  sh:targetClass o:Course ;
+  sh:property v:EnrolledInstructorShape ;
+  sh:property v:EnrolledStudentShape .
+  
+v:EnrolledInstructorShape a sh:PropertyShape ;
+  sh:path o:enrolled ;
+  sh:qualifiedMaxCount 1 ;
+  sh:qualifiedValueShapesDisjoint true ;    
+  sh:qualifiedValueShape v:InstructorShape .
+  
+v:InstructorShape a sh:NodeShape ;
+  sh:class o:Instructor .
+
+v:EnrolledStudentShape a sh:PropertyShape ;
+  sh:path o:enrolled ;
+  sh:qualifiedMinCount 3 ;
+  sh:qualifiedValueShapesDisjoint true ;    
+  sh:qualifiedValueShape v:StudentShape .
+  
+v:StudentShape a sh:NodeShape ;
+  sh:class o:Student .  

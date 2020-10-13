@@ -1,0 +1,19 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix d: <http://nobel.org/data#> . 
+@prefix o: <http://nobel.org/ont#> .
+@prefix v: <http://nobel.org/val#> .
+
+d:NPP1901 a o:NobelPrizePhysics ;
+  o:name "Nobelpriset i fysik 1901"@sv ;
+  o:name "Nobel Prize in Physics 1901"@en-IE ;
+  o:name "Nobel Prize in Physics 1901"@en .
+  
+d:NPP1902 a o:NobelPrizePhysics ;
+  o:name "Prix Nobel de physique 1902"@fr ;
+  o:name "Nobel Prize in Physics 1902"@en .
+  
+d:NPP1903 a o:NobelPrizePhysics ;
+  o:name "Nobel Prize in Physics 1903"@en ;
+  o:name "Nobel Prize for Physics 1903"@en . 

@@ -1,0 +1,11 @@
+PREFIX d: <http://nobel.org/data#>
+PREFIX o: <http://nobel.org/ont#>
+PREFIX v: <http://nobel.org/val#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> 
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+v:NobelPrizeShape {
+  o:name [ @en~ ] ;
+  o:name [ @sv~ ] ;
+  o:name . {2}
+}

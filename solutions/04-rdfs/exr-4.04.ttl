@@ -1,0 +1,16 @@
+@prefix ex: <http://example.org/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ex:Kanzi rdf:type ex:Bonobo .
+ex:Bonobo ex:inGenus ex:Chimpanzee .
+ex:Chimpanzee ex:inOrder ex:Primate .
+ 
+# ex:Bonobo rdfs:subClassOf ex:Chimpanzee .
+# ex:Chimpanzee rdfs:subClassOf ex:Primate .
+
+ex:inGenus rdfs:subPropertyOf rdfs:subClassOf .
+ex:inOrder rdfs:subPropertyOf rdfs:subClassOf .
+
+# ex:inGenus rdfs:subPropertyOf ex:inOrder .

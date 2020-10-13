@@ -1,0 +1,19 @@
+@prefix ex: <http://example.org/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ex:LemonPie ex:contains ex:Lemon . 
+ex:LemonPie rdf:type ex:Recipe .
+ex:LemonPie rdfs:label "Lemon Pie"@en .
+ex:LemonPie rdfs:label "Tarta de Limon"@es .
+ex:LemonPie rdfs:comment "A quick recipe for Lemon Pie"@en .
+ex:LemonPie rdfs:isDefinedBy <http://ex.org/lemonpie.ttl> .
+ex:LemonPie rdfs:seeAlso <http://ex.org/lemondesserts.ttl> .
+ex:contains rdf:type rdf:Property .
+ex:contains rdfs:label "contains"@en . 
+ex:contains rdfs:comment "Denotes the contains relation"@en .
+ex:contains rdfs:isDefinedBy <http://ex.org/recipes.ttl> .
+ex:Recipe rdfs:label "Recipe"@en .
+ex:Recipe rdfs:comment "Class of gastronomic recipes"@en .
+ex:Recipe rdfs:isDefinedBy <http://ex.org/recipes.ttl> .

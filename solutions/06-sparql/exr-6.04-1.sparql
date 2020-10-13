@@ -1,0 +1,11 @@
+PREFIX : <http://ex.org/>
+SELECT DISTINCT ?w1 ?w2
+WHERE {
+  ?npl1 a :NobelPrizeLiterature ; :winner ?w1 .
+  ?npl2 a :NobelPrizeLiterature ; :winner ?w2 .  
+  ?w1 :country ?c1 .
+  ?w2 :country ?c2 .
+  ?c1 :war ?war .
+  ?c2 :war ?war .
+  FILTER (?c1 != ?c2 && ?w1 != ?w2)
+}

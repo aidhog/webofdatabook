@@ -1,0 +1,14 @@
+@prefix ex: <http://example.org/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ex:WilliamGolding ex:wroteNovel ex:LordOfTheFlies .
+
+ex:wroteNovel rdfs:domain ex:Novelist .
+ex:wroteNovel rdfs:range ex:Novel .
+ex:Novelist rdfs:subClassOf ex:Author . 
+ex:Author rdfs:subClassOf ex:Person . 
+ex:Novel rdfs:subClassOf ex:LiteraryWork . 
+ex:wroteNovel rdfs:subPropertyOf ex:authored . 
+ex:authored rdfs:subPropertyOf ex:contributedTo . 

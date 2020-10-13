@@ -1,0 +1,10 @@
+PREFIX : <http://ex.org/>
+SELECT ?predecessor ?winner
+WHERE {
+  ?npl a :NobelPrizeLiterature ; :winner ?winner .
+  OPTIONAL { 
+    { ?npl :prev ?prev . ?prev :winner ?predecessor }
+    UNION
+    { ?prev :next ?npl . ?prev :winner ?predecessor }
+  }
+}

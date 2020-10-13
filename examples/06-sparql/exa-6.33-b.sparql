@@ -1,0 +1,20 @@
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+PREFIX : <http://ex.org/> 
+
+CONSTRUCT {
+  ?x :country ?c .
+  ?x :prize :NobelPrizeLiterature .
+  ?x :won ?n .
+}
+WHERE {
+  { SELECT (count(distinct ?npl) AS ?n ) ?c
+    WHERE {
+     ?npl a :NobelPrizeLiterature ; :winner ?w .
+     ?w :country ?c .
+    }
+    GROUP BY ?c
+  }
+  BIND (iri(concat(str(?c),"_NPL")) AS ?x)
+}

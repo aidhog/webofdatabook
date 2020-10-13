@@ -1,0 +1,7 @@
+PREFIX : <http://ex.org/>
+SELECT ?npl
+WHERE {
+  ?npl a :NobelPrizeLiterature .
+  OPTIONAL { :Germany :war ?war . }
+  FILTER (!bound(?war))
+}

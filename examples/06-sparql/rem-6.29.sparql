@@ -1,0 +1,13 @@
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+PREFIX : <http://ex.org/> 
+
+SELECT ?winner
+WHERE {
+  { ?winner :country :Germany . }  # t1
+  UNION
+  { ?winner :country :France .  }  # t2
+  ?prize :winner ?winner .         # t3
+  ?prize a :NobelPrizeLiterature . # t4
+}

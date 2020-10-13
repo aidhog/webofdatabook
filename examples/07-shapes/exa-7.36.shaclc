@@ -1,0 +1,11 @@
+PREFIX o: <http://nobel.org/ont#>
+PREFIX v: <http://nobel.org/val#>
+
+shape v:NobelPrizeShape -> o:NobelPrize {
+  closed=true ignoredProperties=[rdf:type o:winners o:number] .
+  o:year literal [0..*] .
+  o:winner iri [0..*] {
+    closed=true .
+    o:country iri [0..*] .
+  } .
+}

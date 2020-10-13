@@ -1,0 +1,20 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix d: <http://nobel.org/data#> . 
+@prefix o: <http://nobel.org/ont#> .
+@prefix v: <http://nobel.org/val#> .
+
+v:NobelPrizeShape a sh:NodeShape ;
+  sh:nodeKind sh:IRI .
+  
+v:NobelPrizePhysicsShape a sh:NodeShape ;
+  sh:targetClass o:NobelPrizePhysics ;
+  sh:node v:NobelPrizeShape ;
+  sh:property v:NobelPrizePhysicsNextShape .
+  
+v:NobelPrizePhysicsNextShape a v:PropertyShape ;
+  sh:path o:next ;
+  sh:maxCount 1 ;
+  sh:class o:NobelPrizePhysics ;
+  sh:node v:NobelPrizePhysicsShape .

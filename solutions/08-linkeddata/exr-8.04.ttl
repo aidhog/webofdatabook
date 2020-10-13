@@ -1,0 +1,50 @@
+@base <http://nobel.org/db/> .
+@prefix nv: <http://nobel.org/voc#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<AwardMap> a rr:TriplesMap ;
+
+  rr:logicalTable [ rr:tableName "Award" ] ;
+  
+  rr:subjectMap [
+    rr:template "http://nobel.org/voc#NobelPrize{name}" ;
+  ] ;  
+  
+  rr:predicateObjectMap [
+    rr:predicate rdfs:subClassOf ;
+    rr:object nv:NobelPrize
+  ] .
+
+<LaureateMap> a rr:TriplesMap ;
+
+  rr:logicalTable [ rr:tableName "Laureate" ] ;
+  
+  rr:subjectMap [
+    rr:template "http://nobel.org/db/p/{A_name}#{year}" ;
+    rr:class nv:NobelPrize
+  ] ;
+  
+  rr:predicateObjectMap [
+    rr:predicate rdf:type ;
+    rr:objectMap [
+      rr:template "http://nobel.org/voc#NobelPrize{A_name}"
+    ]
+  ] ;  
+  
+  rr:predicateObjectMap [
+    rr:predicate nv:winner ;
+    rr:objectMap [
+      rr:template "http://nobel.org/db/l/{winner}"
+    ]
+  ] ;
+  
+  rr:predicateObjectMap [
+    rr:predicate nv:year ;
+    rr:objectMap [
+      rr:column "year" ;
+      rr:datatype xsd:gYear
+    ]
+  ] .  

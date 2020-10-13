@@ -1,0 +1,4 @@
+cc7220@cc7220.dcc.uchile.cl:522
+
+cd /home/cc7220/wod
+ontop materialize --properties wod.properties --disable-reasoning --mapping exa-8.19.ttl --output exa-8.19.out.ttl --format turtle

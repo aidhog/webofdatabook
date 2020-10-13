@@ -1,0 +1,25 @@
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+PREFIX : <http://ex.org/> 
+
+SELECT ?country
+WHERE {
+  ?npl a :NobelPrizeLiterature ; :winner ?winner .
+  ?winner :country ?country .
+  {
+    SELECT (avg(?num) AS ?average)
+    WHERE {
+      {
+        SELECT ?country (count(distinct ?npl) AS ?num)
+        WHERE {
+          ?npl a :NobelPrizeLiterature ; :winner ?winner .
+          ?winner :country ?country .
+        }
+        GROUP BY ?country
+      }
+    }
+  }
+}
+GROUP BY ?country ?average
+HAVING (count(distinct ?npl) > ?average)

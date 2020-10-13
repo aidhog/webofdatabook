@@ -1,0 +1,31 @@
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+PREFIX : <http://ex.org/> 
+
+CONSTRUCT {
+  ?w1 :succ ?w2 .
+  ?w2 :pred ?w1 .
+  ?w1a :shared ?w1b .
+}
+WHERE {
+  { ?npl1 a :NobelPrizeLiterature ; ?winner ?w1 .
+    ?npl2 a :NobelPrizeLiterature ; ?winner ?w2 .
+    ?w1 :country ?c .
+    ?w2 :country ?c . 
+    ?np1 :next+ ?np2 .
+    FILTER (?w1 != ?w2)
+    FILTER NOT EXISTS {
+      ?npl a :NobelPrizeLiterature ; ?winner ?w .
+      ?w :country ?c .
+      ?npl :prev+ ?npl1 .
+      ?npl :next+ ?npl2 .
+      FILTER (?w NOT IN (?w1,?w2))
+    }
+  } UNION {
+    ?npl a :NobelPrizeLiterature ; ?winner ?w1a , ?w1b .
+    ?w1a :country ?c .
+    ?w2b :country ?c .
+    FILTER (?w1a != ?w1b)
+  }
+}

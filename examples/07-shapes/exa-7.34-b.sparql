@@ -1,0 +1,10 @@
+PREFIX o: <http://nobel.org/ont#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT DISTINCT $this ?value
+WHERE {
+  $this o:number ?value
+  FILTER (!isLiteral(?value) || datatype(?value) != xsd:integer
+    || coalesce(?value < 1,false) 
+    || coalesce(?value > $max,false) )
+}

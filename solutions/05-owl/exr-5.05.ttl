@@ -1,0 +1,12 @@
+@prefix : <http://ex.org/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# modified slightly for OWL 2 DL compatibility
+:A owl:disjointWith :B .
+:A owl:equivalentClass :B .
+
+:A a owl:Class .
+:B a owl:Class .

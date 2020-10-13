@@ -1,0 +1,18 @@
+@prefix ex1:  <http://ex1.org/> .
+@prefix ex2:  <http://ex2.org/> .
+@prefix ex3:  <http://ex3.org/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ex2:Lemon ex2:contains ex2:Citrus .
+
+ex3:CoffeeParfait ex3:ingred ex3:Cream , ex2:Lemon , ex3:Coffee .
+
+ex1:Frank ex1:allergy ex2:Citrus .
+
+ex3:ingred rdfs:subPropertyOf ex2:contains .
+ex2:contains rdf:type owl:TransitiveProperty .
+ex2:foundIn owl:inverseOf ex2:contains .
+ex1:unsuitable owl:propertyChainAxiom ( ex1:allergy ex2:foundIn ) .

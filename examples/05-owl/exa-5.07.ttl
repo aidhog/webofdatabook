@@ -1,0 +1,26 @@
+@prefix ex1:  <http://ex1.org/> .
+@prefix ex2:  <http://ex2.org/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ex2:TescoTerryland ex2:lat 53.281 ;
+  ex2:long -9.046 .
+
+ex2:Tesco ex2:store ex2:TescoTerryland .
+
+ex1:TescoTLGalway ex1:lat 53.281 ;
+  ex1:long -9.046 ;
+  ex1:chain ex1:Tesco .
+
+ex1:Store owl:hasKey ( ex2:long ex2:lat ) .
+
+ex2:store rdfs:range ex1:Store .
+ex2:store owl:inverseOf ex1:chain .
+ex2:long owl:equivalentProperty ex1:long .
+ex2:lat owl:equivalentProperty ex1:lat .
+
+ex1:chain rdf:type owl:FunctionalProperty .
+# or
+# ex2:store rdf:type owl:InverseFunctionalProperty .

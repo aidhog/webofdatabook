@@ -1,0 +1,16 @@
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+PREFIX : <http://ex.org/> 
+
+DELETE {
+  GRAPH ?g1 { ?war :combatant ?combatant }
+}
+INSERT { 
+  GRAPH ?g2 { ?war :combatant ?combatant }
+}
+WHERE { 
+  GRAPH ?g1 { ?war :combatant ?combatant }
+  GRAPH ?g2 { ?prize :winner ?combatant }
+  ?prize a :NobelPrizeLiterature .
+}

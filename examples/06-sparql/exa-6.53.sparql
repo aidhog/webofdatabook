@@ -1,0 +1,12 @@
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+PREFIX : <http://ex.org/> 
+
+ADD GRAPH :G-FPW TO DEFAULT;
+ADD GRAPH :G-SP TO DEFAULT;
+ADD GRAPH :G-TM TO DEFAULT;
+ADD GRAPH :G-BB TO DEFAULT;
+ADD GRAPH :G-FM TO DEFAULT;
+ADD GRAPH :G-JE TO DEFAULT;
+DROP NAMED;

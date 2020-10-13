@@ -1,0 +1,36 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix d: <http://nobel.org/data#> . 
+@prefix o: <http://nobel.org/ont#> .
+@prefix v: <http://nobel.org/val#> .
+
+o: sh:declare [
+  sh:prefix "o" ;
+  sh:namespace "http://nobel.org/ont#"^^xsd:anyURI 
+] .
+
+xsd: sh:declare [
+  sh:prefix "xsd" ;
+  sh:namespace "http://www.w3.org/2001/XMLSchema#"^^xsd:anyURI 
+] .
+
+d: sh:declare [
+  sh:prefix "d" ;
+  sh:namespace "http://nobel.org/data#"^^xsd:anyURI 
+] .
+
+v:HasOneYear a sh:PropertyShape ;
+  sh:targetClass o:NobelPrize ;
+  sh:path o:year ;
+  sh:sparql [
+    a sh:SPARQLConstraint ;
+    sh:prefixes o: , xsd: , d: ;
+    sh:select """
+      SELECT $this ?value {
+        $this $PATH ?value , ?value2 .
+        FILTER(?value != ?value2 || !isLiteral(?value) 
+           || datatype(?value) != xsd:gYear)
+      }
+    """ 
+  ] .

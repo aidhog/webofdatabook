@@ -1,0 +1,26 @@
+@prefix ex1: <http://ex1.org/> .
+@prefix ex2: <http://ex2.org/> .
+@prefix ex3: <http://ex3.org/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ex1:NLP1983 ex1:awardedTo ex1:WilliamGolding .
+ex1:NLP1983 rdf:type ex1:NobelPrizeLit .
+ex1:NLP1983 ex1:year "1982"^^xsd:integer .
+ex1:WilliamGolding rdf:type ex1:Novelist .
+ex1:WilliamGolding rdfs:label "William Golding" .
+
+ex2:WGGolding rdf:type ex2:Author .
+ex2:WGGolding ex2:foughtIn ex2:NormandyInvasion .
+
+ex3:NormandyInvasion rdf:type ex3:Conflict  .
+ex3:NormandyInvasion ex3:partOf ex3:OperationOverlord .
+ex3:OperationOverlord ex3:partOf ex3:WorldWarII .
+
+ex1:Novelist rdfs:subClassOf ex2:Author  .
+ex2:Author rdfs:subClassOf ex2:Person  .
+ex2:foughtIn rdfs:domain ex2:Person  .
+ex2:foughtIn rdfs:range ex3:Conflict  .
+ex2:foughtIn rdfs:subPropertyOf ex2:involvedIn  .

@@ -1,0 +1,33 @@
+@base <http://nobel.org/sparql/> .
+@prefix sd: <http://.../ns/sparql-service-description#> .
+@prefix ent: <http://www.w3.org/ns/entailment/> .
+@prefix profile: <http://www.w3.org/ns/owl-profile/> .
+@prefix formats: <http://www.w3.org/ns/formats/> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+<this> a sd:Service ;
+  sd:endpoint <> ;
+  rdfs:label "Nobel Prize SPARQL Service"@es ;
+  rdfs:comment "SPARQL service with data about Nobel Prizes"@en ;
+  sd:feature sd:EmptyGraphs , sd:BasicFederatedQuery ; 
+  sd:defaultEntailmentRegime ent:OWL-RDF-Based ;  
+  sd:defaultSupportedEntailmentProfile profile:RL ;        
+  sd:supportedLanguage sd:SPARQL11Query , sd:SPARQL11Update ;
+  sd:resultFormat formats:Turtle , formats:SPARQL_Results_XML ;
+  sd:inputFormat formats:Turtle , formats:RDF_XML ;    
+  sd:extensionFunction <KeywordSearch> ;
+  sd:defaultDataset [
+    a sd:Dataset ;
+    sd:defaultGraph [
+      a sd:Graph ;
+      rdfs:comment "Types of prizes won"@en
+    ] ;
+    sd:namedGraph [
+      a sd:NamedGraph ;
+      sd:name <literature/> ;
+      sd:graph [
+        a sd:Graph ;
+        rdfs:comment "Winners for literature"@en
+      ]
+    ]
+  ] .

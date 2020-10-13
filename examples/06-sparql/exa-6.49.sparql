@@ -1,0 +1,17 @@
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+PREFIX : <http://ex.org/> 
+
+WITH :G-FPW
+DELETE { 
+  ?country :war ?war . 
+  ?war :combatant ?combatant .
+}
+INSERT { 
+  ?war :faction [ :country ?country ; :combatant ?combatant ] . 
+}
+WHERE { 
+  ?country :war ?war .
+  OPTIONAL { GRAPH :G-SP { ?combatant :country ?country . } }
+}

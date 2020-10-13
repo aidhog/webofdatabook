@@ -1,0 +1,16 @@
+PREFIX rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+PREFIX : <http://ex.org/> 
+
+SELECT DISTINCT ?winner ?wa1 ?wn1
+WHERE {
+  ?aa a/rdfs:subClassOf* :AcademyAward ; :winner ?winner .
+  OPTIONAL { ?aa :winner ?wa1, ?wa2 . FILTER (?wa1 != ?wa2) }
+  FILTER(!bound(?wa1) || ?wa1 != ?winner)
+  SERVICE <http://nobel.org/sparql> {
+     ?np a/rdfs:subClassOf* :NobelPrize ; :winner ?winner .
+     OPTIONAL { ?np :winner ?wn1 , ?wn2 . FILTER (?wn1 != ?wn2) }
+     FILTER(!bound(?wn1) || ?wn1 != ?winner)
+  }
+}

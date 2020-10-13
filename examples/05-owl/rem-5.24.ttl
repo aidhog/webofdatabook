@@ -1,0 +1,25 @@
+# minor changes for OWL 2 DL compatibility
+@prefix : <http://ex.org/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:MinorAge a rdfs:Datatype ; owl:equivalentClass 
+  [ a rdfs:Datatype ;
+    owl:onDatatype xsd:integer ;
+    owl:withRestrictions (
+      [ xsd:minInclusive  0 ]
+      [ xsd:maxExclusive  18 ] ) ] .
+
+:age a owl:DatatypeProperty , owl:FunctionalProperty .
+
+:Minor a owl:Class ; owl:equivalentClass 
+  [ owl:intersectionOf (
+      :Person
+      [ a owl:Restriction ; 
+        owl:someValuesFrom :MinorAge ;
+        owl:onProperty :age ] ) ] .
+
+:Person a owl:Class .
+#:Fred a :Minor ; :age "14" .

@@ -1,0 +1,10 @@
+PREFIX : <http://ex.org/>
+SELECT DISTINCT ?w1 ?w2 ?gap
+WHERE {
+  ?npl1 a :NobelPrizeLiterature ; :winner ?w1 ; :year ?y1 .
+  ?npl2 a :NobelPrizeLiterature ; :winner ?w2 ; :year ?y2 .
+  ?w1 :country ?c .
+  ?w2 :country ?c .
+  BIND ((xsd:integer(str(?y1)) - xsd:integer(str(?y2))) AS ?gap)
+  FILTER (?gap >= 0 && ?w1 != ?w2)
+}

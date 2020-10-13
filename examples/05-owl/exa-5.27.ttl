@@ -1,0 +1,34 @@
+@prefix ex1:  <http://ex1.org/> .
+@prefix ex2:  <http://ex2.org/> .
+@prefix ex3:  <http://ex3.org/> .
+@prefix ex4:  <http://ex4.org/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ex1:Jen ex1:allergy ex1:Citrus .
+
+ex2:Pat a ex2:Coeliac .
+
+ex3:LemonTart a ex3:Dessert ;
+  ex3:ingred ex3:Lemon , ex3:Flour .
+
+ex3:Lemon a ex3:CitrusFruit .
+
+ex3:Flour ex3:contains ex3:Gluten .
+
+ex3:ingred rdfs:subPropertyOf ex3:contains .
+ex3:contains rdf:type owl:TransitiveProperty .
+ex4:containedIn owl:inverseOf ex3:contains .
+ex4:unsuitable owl:propertyChainAxiom ( ex1:allergy ex4:containedIn ) .
+
+ex3:CitrusFruit rdfs:subClassOf 
+   [ a owl:Restriction ;
+     owl:hasValue ex1:Citrus ; 
+     owl:onProperty ex3:contains ] .
+
+ex2:Coeliac owl:equivalentClass 
+   [ a owl:Restriction ;
+     owl:hasValue ex3:Gluten ; 
+     owl:onProperty ex1:allergy ] .
